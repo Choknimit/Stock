@@ -6,4 +6,6 @@ const userController = require('../controllers/user.controller')
 
 router.get('/', userController.userAll)
 
+router.put('/upuser/:id', userController.UpdateUsers)
+
 module.exports = router;

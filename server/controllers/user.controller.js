@@ -9,7 +9,7 @@ exports.userAll = async (req, res, next) => {
             user: user
         })
     
-        console.log(user)
+        // console.log(user)
     } catch (error) {
         res.status(404).json({
             error: {
@@ -18,4 +18,19 @@ exports.userAll = async (req, res, next) => {
         })
         
     }
+}
+
+exports.UpdateUsers = async (req, res, next) => {
+    const { id } = req.params
+    const { name, email, password } = req.body
+
+    const user = await User.updateOne({ _id: id}, {
+        name: name,
+        email: email,
+        password: password
+    })
+
+    console.log(user);
+
+    res.status(200).json(user)
 }

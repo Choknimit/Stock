@@ -4,13 +4,13 @@ import MainPrd from './components/Product/MainProduct'
 function App() {
 
   return (
-    <di>
+    <div>
         <Router>
           <Routes>
             <Route path="/" element={<MainPrd />} />
           </Routes>
         </Router>
-    </di>
+    </div>
   )
 }
 

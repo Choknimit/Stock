@@ -41,3 +41,37 @@ mongoDB -> updateOne() เหมือนจะมีปัญหาเวลา
 ---------------- ไม่รู้มีวิธีแก้แบบอื่นอีกไหม รอหาคำตอบ --------------------
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+dotmap เป็น function พื้นฐานของ javascript เอาไว้แก้ไขพวก Array แก้ไขข้อมูลต่างๆ จากรูปแบบนึงไปเป็นอีกรูปแบบนึง
+
+
+การทำ populate คือการ join table เช่นอยากรู้ว่าร้านอาหารมีเมนูไหนบ้าง หรือประเภทสินค้าหนึ่งประเภทมีสินค้าประเภทเดียวกันอะไรบ้าง
+
+การทำ fk คือตั้งชื่อ fied ชื่ออะไรขึ้นมาก็ได้ สินค้าตัวนี้อยู่ที่ประเภทไหน
+        const productSchema = Schema({ // model product
+                prdname: { type: String, require: true },
+                prdprice: { type: String, require: true },
+                prdphoto: { type: String, require: true, default: 'nopic.png'},
+                prddes: { type: String, }
+        (fk)    typeprd: { type: Schema.Types.ObjectId, ref: 'ProductType' } //ต้องกำหนดให้เป็น type ObjectId แล้ว ref ไปที่ model ที่เราต้องการ model ที่เรา ref คือ ProductType          
+
+                // const prdtype = mongoose.model('ตัวนี้คือ model ที่เรา ref -> ProductType ', prdtypeSchema) //model productType
+},)
+
+วิธีการ populate ต้องทำการประกาศ fk ก่อนถึงจะทำการ populate ได้เวลา populate จะมีลักษณะแบบนี้
+        const prds = await Prd.find().populate('typeprd')
+ประกาศตัวแปร prds ให้มาเก็บค่าไว้ แล้วให้ Prd.find().populate fied ที่ได้ทำการ fk  ไว้ในที่นี้คือ typeprd ตัวอย่าง Json ที่ได้จากการ populate
+{
+            "id": "6437fc7dca033324eea13a4f", // ส่วนของ model product
+            "prdname": "Devanom",
+            "prdprice": "126.00",
+            "prdphoto": "http://localhost:5000/images/Devanom.jpg",
+            "prddes": "This is Beer Devanom",
+            "typeprd": { // คือส่วนที่ populate
+                "_id": "6437f86bc9902cff346c14a3", // ส่วนของ model productType
+                "Prdtype_name": "BeerCraftType",
+                "createdAt": "2023-04-13T12:41:15.444Z",
+                "updatedAt": "2023-04-13T12:41:15.444Z",
+                "__v": 0
+            }
+        },

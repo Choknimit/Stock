@@ -6,7 +6,7 @@ const productSchema = Schema({
     prdprice: { type: String, require: true },
     prdphoto: { type: String, require: true, default: 'nopic.png'},
     prddes: { type: String, },
-    typeprd: { type: Schema.Types.ObjectId, ref: 'ProductType' } // การทำ Foreign Key 
+    typePrd_id: [{ type: Schema.Types.ObjectId, ref: 'ProductType' }] // การทำ Foreign Key 
 }, {
     // timestamps: { createdAt: 'createdDate',updatedAt: 'updatedDate'},
     timestamps: true,

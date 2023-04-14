@@ -1,4 +1,5 @@
 // const Prd = require('../models/products.model')
+// const PrdType = require('../models/prdType.model')
 // const config = require('../configs/config')
 
 // exports.prdAll = async (req, res, next) => {
@@ -135,4 +136,11 @@
 
 
 // // updateOne จะ return ค่า modifiedCount = number ถ้า modifiedCount = 1 คือค่ามีการเปลี่ยนแปลง ถ้า modifiedCount = 0 คือค่าไม่่มีการเปลี่ยนแปลง
+
+// exports.prdTypeAll = async (req, res, next) => {
+//     const prdType = await PrdType.find()
+//     res.status(200).json({
+//         ProductType: prdType
+//     })
+// }
 

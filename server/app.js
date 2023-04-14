@@ -9,7 +9,7 @@ require('./configs/db').connect();
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const productsRouter = require('./routes/products.router')
+// const productsRouter = require('./routes/products.router')
 const productTypeRouter = require('./routes/productType.router')
 
 const app = express();

@@ -15,7 +15,9 @@ const productTypeRouter = require('./routes/productType.router')
 const app = express();
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json({
+    limit: '50mb'
+}));
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(logger('dev'));
 app.use(express.json());

@@ -8,4 +8,6 @@ router.get('/', userController.userAll)
 
 router.put('/upuser/:id', userController.UpdateUsers)
 
+router.post('/register', userController.registerUsers)
+
 module.exports = router;

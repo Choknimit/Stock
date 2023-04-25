@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const prdtypeSchema = new mongoose.Schema({
-    Prdtype_name: { type: String, require: true },
+    prdTypeName: { type: String, required: true },
     // prd_id: [{ type: Schema.Types.ObjectId, ref: 'Product' }]
     
 }, {

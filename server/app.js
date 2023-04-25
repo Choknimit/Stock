@@ -4,12 +4,12 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const errorHandler = require('./middlewares/errorHandler');
 
 require('./configs/db').connect();
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-// const productsRouter = require('./routes/products.router')
 const productTypeRouter = require('./routes/productType.router')
 
 const app = express();
@@ -26,9 +26,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
-// app.use('/api/products', productsRouter)
-app.use('/api/productType', productTypeRouter)
+app.use('/api/productType', productTypeRouter);
+
+app.use(errorHandler);
 
 module.exports = app;
